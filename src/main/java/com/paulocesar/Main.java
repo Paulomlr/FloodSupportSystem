@@ -1,13 +1,20 @@
 package com.paulocesar;
 
-import com.paulocesar.entity.DistributionCenter;
+import com.paulocesar.entity.*;
+import com.paulocesar.entity.enums.ClothingSize;
+import com.paulocesar.entity.enums.UnitMeasurement;
+
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        DistributionCenter dc = new DistributionCenter("Centro de Distribuição Prosperidade",
-                "Av. Borges de Medeiros", "1501", "Cidade Baixa",
-                "Porto Alegre", "RS", "90119-900");
+        Item i1 = new Food("Arroz", 5.0, UnitMeasurement.KG, LocalDate.now());
+        System.out.println(i1);
 
-        System.out.println(dc);
+        Item i2 = new Clothing("Camisa", 'M', ClothingSize.M);
+        System.out.println(i2);
+
+        Item i3 = new HygieneProduct("Pasta de dente");
+        System.out.println(i3);
     }
 }
