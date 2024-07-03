@@ -27,14 +27,13 @@ public class Shelter {
     @Setter(AccessLevel.NONE)
     private Map<Class<? extends Item>, List<Item>> itemList;
 
-    public Shelter(String name, Address address, String responsible, String phone, String email, Integer capacity, Double occupationPercentage) {
+    public Shelter(String name, Address address, String responsible, String phone, String email, Integer capacity) {
         this.name = name;
         this.address = address;
         this.responsible = responsible;
         this.phone = phone;
         this.email = email;
         this.capacity = capacity;
-        this.occupationPercentage = occupationPercentage;
         this.itemList = new HashMap<>();
     }
 

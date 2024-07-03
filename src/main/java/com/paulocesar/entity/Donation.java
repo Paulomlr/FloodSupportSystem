@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @ToString
 public class Donation {
 
-    @Setter(AccessLevel.NONE)
     private Integer id;
     private DistributionCenter distributionCenter;
     private LocalDateTime sendDate;

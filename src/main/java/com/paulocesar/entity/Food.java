@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 public class Food extends Item {
+
     private Double quantity;
     private UnitMeasurement unitMeasurement;
     private LocalDate expirationDate;
