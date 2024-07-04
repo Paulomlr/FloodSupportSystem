@@ -1,6 +1,7 @@
 package com.paulocesar;
 
 import com.paulocesar.entity.Address;
+import com.paulocesar.entity.DistributionCenter;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,8 +13,10 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         Address address1 = new Address("Av. Boqueirão", "2450", "Igara", "Canoas", "RS", "92032-420");
+        DistributionCenter db1 = new DistributionCenter("Centro de Distribuição Esperança", address1);
+
         em.getTransaction().begin();
-        em.persist(address1);
+        em.persist(db1);
         em.getTransaction().commit();
 
         em.close();
