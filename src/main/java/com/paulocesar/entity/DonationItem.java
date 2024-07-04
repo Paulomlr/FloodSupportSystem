@@ -12,12 +12,12 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @ToString
-@Entity
+
 public class DonationItem {
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    @EmbeddedId
+
     private DonationItemPK id = new DonationItemPK();
     private Integer quantity;
 

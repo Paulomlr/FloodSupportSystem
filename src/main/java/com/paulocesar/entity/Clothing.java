@@ -6,12 +6,21 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 @Getter
 @Setter
 @ToString
+@Entity(name = "tb_clothing")
+@PrimaryKeyJoinColumn(name="id_item")
 public class Clothing extends Item {
 
     private Character gender;
+
+    @Enumerated(EnumType.STRING)
     private ClothingSize size;
 
     public Clothing(String itemName, Character gender, ClothingSize size) {

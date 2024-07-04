@@ -13,14 +13,11 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @ToString
-@Embeddable
+
 public class DonationItemPK {
 
-    @ManyToOne
-    @JoinColumn(name = "id_donation")
     private Donation donation;
 
-    @ManyToOne
-    @JoinColumn(name = "id_item")
+
     private Item item;
 }

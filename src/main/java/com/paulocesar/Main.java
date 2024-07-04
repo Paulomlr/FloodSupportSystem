@@ -1,7 +1,7 @@
 package com.paulocesar;
 
-import com.paulocesar.entity.Address;
-import com.paulocesar.entity.DistributionCenter;
+import com.paulocesar.entity.*;
+import com.paulocesar.entity.enums.ClothingSize;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,8 +15,13 @@ public class Main {
         Address address1 = new Address("Av. Boqueirão", "2450", "Igara", "Canoas", "RS", "92032-420");
         DistributionCenter db1 = new DistributionCenter("Centro de Distribuição Esperança", address1);
 
+        Item hygieneProduct = new HygieneProduct("Soap");
+        Item clothing = new Clothing("T-Shirt", 'M', ClothingSize.M);
+
         em.getTransaction().begin();
         em.persist(db1);
+        em.persist(clothing);
+        em.persist(hygieneProduct);
         em.getTransaction().commit();
 
         em.close();
