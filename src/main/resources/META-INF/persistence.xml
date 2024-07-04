@@ -2,25 +2,20 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
+ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
 
-    <persistence-unit name="FloodSupportSystemPU">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
-        <!-- Configurações da unidade de persistência -->
+    <persistence-unit name="FloodSupportSystemPU" transaction-type="RESOURCE_LOCAL">
         <properties>
-            <!-- Configuração do banco de dados -->
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/flood_relief_db"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="Paulocesar0."/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/flood_relief_db?useSSL=FALSE&amp;serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="Paulocesar0." />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
 
-            <!-- Configuração do Hibernate -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop  "/> <!-- Atualiza o schema do banco de dados -->
-            <property name="hibernate.show_sql" value="true"/> <!-- Mostra o SQL gerado pelo Hibernate -->
-            <property name="hibernate.format_sql" value="true"/> <!-- Formata o SQL gerado -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
         </properties>
     </persistence-unit>
 </persistence>
