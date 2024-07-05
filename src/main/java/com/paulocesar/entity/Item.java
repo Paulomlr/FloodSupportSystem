@@ -1,10 +1,14 @@
 package com.paulocesar.entity;
 
 import com.paulocesar.entity.enums.ItemType;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,8 +24,26 @@ public abstract class Item {
     private ItemType itemType;
     private String itemName;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "id.item", fetch = FetchType.EAGER)
+    private Set<DonationItem> items = new HashSet<>();
+
     public Item(ItemType itemType, String itemName) {
         this.itemType = itemType;
         this.itemName = itemName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(id, item.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

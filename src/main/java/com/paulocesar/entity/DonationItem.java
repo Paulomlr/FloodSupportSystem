@@ -8,16 +8,17 @@ import lombok.ToString;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
-
+@Entity(name = "tb_donation_item")
 public class DonationItem {
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-
+    @EmbeddedId
     private DonationItemPK id = new DonationItemPK();
     private Integer quantity;
 
@@ -41,5 +42,18 @@ public class DonationItem {
 
     public void setItem(Item item){
         id.setItem(item);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DonationItem that = (DonationItem) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
