@@ -22,19 +22,34 @@ public class DistributionCenter {
     @JoinColumn(name = "id_address")
     private Address address;
 
-    @ElementCollection
-    @CollectionTable(name = "distribution_center_item", joinColumns = @JoinColumn(name = "id_distribution_center"))
-    @MapKeyJoinColumn(name = "id_item")
-    @Column(name = "quantity")
-    private Map<Item, Integer> itemQuantities = new HashMap<>();
-
     @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "distributionCenter", cascade = CascadeType.ALL)
     private Set<Donation> donations = new HashSet<>();
 
+    @Setter(AccessLevel.NONE)
+    private int foodQuantity = 0;
+
+    @Setter(AccessLevel.NONE)
+    private int clothingQuantity = 0;
+
+    @Setter(AccessLevel.NONE)
+    private int hygieneProductQuantity = 0;
+
     public DistributionCenter(String name, Address address) {
         this.name = name;
         this.address = address;
+    }
+
+    public void processDonation(Donation donation){
+        donations.add(donation);
+
+        for(DonationItem donationItem : donation.getItems()){
+            switch (donationItem.getItem().getItemType()){
+                case CLOTHES -> clothingQuantity += donationItem.getQuantity();
+                case FOODS -> foodQuantity += donationItem.getQuantity();
+                case HYGIENE_PRODUCTS -> hygieneProductQuantity += donationItem.getQuantity();
+            }
+        }
     }
 
     @Override
