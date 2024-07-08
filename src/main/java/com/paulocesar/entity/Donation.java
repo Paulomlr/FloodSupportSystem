@@ -7,9 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -28,7 +26,7 @@ public class Donation {
 
     @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "id.donation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<DonationItem> items = new HashSet<>();
+    private List<DonationItem> items = new ArrayList<>();
 
     public Donation(DistributionCenter distributionCenter, LocalDateTime sendDate) {
         this.distributionCenter = distributionCenter;
