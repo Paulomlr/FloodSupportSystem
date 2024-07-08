@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,7 +30,6 @@ public class Main {
         donation.getItems().add(donationItem2);
 
         em.getTransaction().begin();
-        em.persist(address1);
         em.persist(db1);
         em.persist(clothing);
         em.persist(hygieneProduct);
@@ -39,6 +37,12 @@ public class Main {
         em.persist(donation);
         em.persist(donationItem);
         em.persist(donationItem2);
+        em.getTransaction().commit();
+
+        db1.processDonation(donation);
+
+        em.getTransaction().begin();
+        em.merge(db1);
         em.getTransaction().commit();
 
         em.close();
