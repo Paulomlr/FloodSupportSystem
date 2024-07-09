@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -22,12 +20,18 @@ public abstract class Item {
 
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
+
     private String itemName;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    @OneToMany(mappedBy = "id.item", fetch = FetchType.EAGER)
-    private Set<DonationItem> items = new HashSet<>();
+    @OneToMany(mappedBy = "id.item")
+    private List<DonationItem> donationItems = new ArrayList<>();
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "id.item")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Item(ItemType itemType, String itemName) {
         this.itemType = itemType;

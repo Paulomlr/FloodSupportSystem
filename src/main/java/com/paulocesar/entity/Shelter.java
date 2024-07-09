@@ -5,27 +5,32 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
+@Entity(name = "tb_shelter")
 public class Shelter {
     private static Integer MAX_CAPACITY_ITEM = 200;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address")
     private Address address;
+
     private String responsible;
     private String phone;
     private String email;
     private Integer capacity;
     private Double occupationPercentage;
     private Integer quantityPeople;
-
-    @Setter(AccessLevel.NONE)
-    private List<Item> itemList = new ArrayList<>();
 
     @Setter(AccessLevel.NONE)
     private int foodQuantity = 0;

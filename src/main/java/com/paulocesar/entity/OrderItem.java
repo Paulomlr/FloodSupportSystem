@@ -6,10 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.util.Objects;
 
 @Getter
 @Setter
+@Entity(name = "tb_order_item")
 public class OrderItem {
 
     @Getter(AccessLevel.NONE)
