@@ -12,6 +12,8 @@ import java.util.List;
 @Setter
 @ToString
 public class Shelter {
+    private static Integer MAX_CAPACITY_ITEM = 200;
+
     private Integer id;
     private String name;
     private Address address;
@@ -20,9 +22,19 @@ public class Shelter {
     private String email;
     private Integer capacity;
     private Double occupationPercentage;
-    
+    private Integer quantityPeople;
+
     @Setter(AccessLevel.NONE)
-    private List<Item> itemList;
+    private List<Item> itemList = new ArrayList<>();
+
+    @Setter(AccessLevel.NONE)
+    private int foodQuantity = 0;
+
+    @Setter(AccessLevel.NONE)
+    private int clothingQuantity = 0;
+
+    @Setter(AccessLevel.NONE)
+    private int hygieneProductQuantity = 0;
 
     public Shelter(String name, Address address, String responsible, String phone, String email, Integer capacity) {
         this.name = name;
@@ -31,6 +43,5 @@ public class Shelter {
         this.phone = phone;
         this.email = email;
         this.capacity = capacity;
-        this.itemList = new ArrayList<>();
     }
 }
