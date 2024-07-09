@@ -49,4 +49,14 @@ public class Shelter {
         this.email = email;
         this.capacity = capacity;
     }
+
+    public void receiveItem(List<OrderItem> orderItems){
+        for(OrderItem orderItem : orderItems){
+            switch (orderItem.getItem().getItemType()){
+                case CLOTHES -> clothingQuantity += orderItem.getQuantity();
+                case HYGIENE_PRODUCTS -> hygieneProductQuantity += orderItem.getQuantity();
+                case FOODS -> foodQuantity   += orderItem.getQuantity();
+            }
+        }
+    }
 }
