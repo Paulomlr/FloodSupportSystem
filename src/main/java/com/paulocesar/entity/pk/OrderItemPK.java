@@ -1,7 +1,7 @@
 package com.paulocesar.entity.pk;
 
-import com.paulocesar.entity.Donation;
 import com.paulocesar.entity.Item;
+import com.paulocesar.entity.Order;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +17,11 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @Embeddable
-public class DonationItemPK implements Serializable {
+public class OrderItemPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "id_donation")
-    private Donation donation;
+    @JoinColumn(name = "id_order")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "id_item")
