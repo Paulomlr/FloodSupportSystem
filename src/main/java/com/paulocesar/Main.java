@@ -17,6 +17,8 @@ public class Main {
 
         DistributionCenter db1 = new DistributionCenter("Centro de Distribuição Esperança", address1);
 
+        Shelter shelter = new Shelter("Abrigo Boa Esperança", address1, "João Silva", "555-1234", "joao@abrigo.com", 100);
+
         Item clothing = new Clothing("T-Shirt", 'M', ClothingSize.M);
         Item hygieneProduct = new HygieneProduct("Soap");
         Item hygieneProduct2 = new HygieneProduct("Pasta de dente");
@@ -40,6 +42,24 @@ public class Main {
         em.getTransaction().commit();
 
         db1.processDonation(donation);
+
+        em.getTransaction().begin();
+        em.merge(db1);
+        em.getTransaction().commit();
+
+        Item item1 = new HygieneProduct("Soap");
+        Order order = new Order(shelter, db1, LocalDateTime.now());
+        OrderItem orderItem = new OrderItem(order, item1, 19);
+        order.getOrderItems().add(orderItem);
+
+        em.getTransaction().begin();
+        em.persist(shelter);
+        em.persist(item1);
+        em.persist(order);
+        em.persist(orderItem);
+        em.getTransaction().commit();
+
+        db1.processOrder(order);
 
         em.getTransaction().begin();
         em.merge(db1);

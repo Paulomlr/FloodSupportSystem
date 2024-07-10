@@ -26,6 +26,9 @@ public class DistributionCenter {
     @OneToMany(mappedBy = "distributionCenter", cascade = CascadeType.ALL)
     private Set<Donation> donations = new HashSet<>();
 
+    @OneToMany(mappedBy = "distributionCenter", cascade = CascadeType.ALL)
+    private Set<Order> orders = new HashSet<>();
+
     @Setter(AccessLevel.NONE)
     private int foodQuantity = 0;
 
@@ -37,7 +40,7 @@ public class DistributionCenter {
 
     public DistributionCenter(String name, Address address) {
         this.name = name;
-        this.address = address;
+        this.address = address; 
     }
 
     public void processDonation(Donation donation){
@@ -50,6 +53,47 @@ public class DistributionCenter {
                 case HYGIENE_PRODUCTS -> hygieneProductQuantity += donationItem.getQuantity();
             }
         }
+    }
+
+    public void processOrder(Order order){
+        for(OrderItem orderItem: order.getOrderItems()){
+            switch (orderItem.getItem().getItemType()){
+                case CLOTHES -> {
+                    if (clothingQuantity < orderItem.getQuantity()){
+                        rejectOrder("Insufficient clothing stock");
+                        return;
+                    }
+                }
+                case FOODS -> {
+                    if(foodQuantity < orderItem.getQuantity()){
+                        rejectOrder("Insufficient food stock");
+                        return;
+                    }
+                }
+                case HYGIENE_PRODUCTS -> {
+                    if(hygieneProductQuantity < orderItem.getQuantity()){
+                        rejectOrder("Insufficient hygiene products stock");
+                        return;
+                    }
+                }
+            }
+        }
+        acceptOrder(order);
+    }
+
+    private void acceptOrder(Order order) {
+        for (OrderItem orderItem : order.getOrderItems()) {
+            switch (orderItem.getItem().getItemType()) {
+                case CLOTHES -> clothingQuantity -= orderItem.getQuantity();
+                case FOODS -> foodQuantity -= orderItem.getQuantity();
+                case HYGIENE_PRODUCTS -> hygieneProductQuantity -= orderItem.getQuantity();
+            }
+        }
+        order.getShelter().receiveItem(order.getOrderItems());
+    }
+
+    private void rejectOrder(String reason) {
+        System.out.println("Order rejected: " + reason);
     }
 
     @Override
