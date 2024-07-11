@@ -2,12 +2,16 @@ package com.paulocesar;
 
 import com.paulocesar.entity.*;
 import com.paulocesar.services.DistributionCenterService;
+import com.paulocesar.services.DonationService;
+import com.paulocesar.services.ItemService;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
         DistributionCenterService centerService = new DistributionCenterService();
+        ItemService itemService = new ItemService();
+        DonationService donationService = new DonationService();
 
         Address address1 = new Address("Av. Boqueirão", "2450", "Igara", "Canoas", "RS", "92032-420");
         DistributionCenter dc1 = new DistributionCenter("Centro de Distribuição Esperança", address1);
@@ -15,18 +19,22 @@ public class Main {
         centerService.createDistributionCenter(dc1);
         centerService.createDistributionCenter(dc2);
 
-        DistributionCenter dc = centerService.getDistributionCenter(dc1.getId());
-        System.out.println("Retrieved center: " + dc);
+        HygieneProduct soap = new HygieneProduct("Soap");
+        itemService.createItem(soap);
 
-        List<DistributionCenter> centers = centerService.getAllDistributionCenter();
-        System.out.println("All centers: " + centers);
+        Donation donation = new Donation(dc1, LocalDateTime.now());
+        donationService.createDonation(donation);
 
-        dc1.setName("Update Center Name");
-        centerService.updateDistributionCenter(dc1);
-        System.out.println(dc1);
+        DonationItem item = new DonationItem(donation, soap, 100);
+        donation.getItems().add(item);
 
-        centerService.deleteDistributionCenter(dc1);
+        donationService.updateDonation(donation);
+
+        Donation findDonation = donationService.getDonation(donation.getId());
+        System.out.println(findDonation);
 
         centerService.close();
+        itemService.close();
+        donationService.close();
     }
 }
