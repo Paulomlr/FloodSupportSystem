@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "order")
 @EqualsAndHashCode
 @Embeddable
 public class OrderItemPK implements Serializable {

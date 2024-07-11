@@ -1,10 +1,7 @@
 package com.paulocesar.entity;
 
 import com.paulocesar.entity.enums.OrderStatus;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +11,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 @Entity(name = "tb_order")
 public class Order {
     @Id

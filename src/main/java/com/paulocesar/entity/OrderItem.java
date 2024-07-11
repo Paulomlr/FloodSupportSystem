@@ -1,9 +1,7 @@
 package com.paulocesar.entity;
 
 import com.paulocesar.entity.pk.OrderItemPK;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -11,6 +9,8 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 @Entity(name = "tb_order_item")
 public class OrderItem {
 
