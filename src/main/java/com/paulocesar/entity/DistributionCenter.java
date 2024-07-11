@@ -40,14 +40,14 @@ public class DistributionCenter {
 
     public DistributionCenter(String name, Address address) {
         this.name = name;
-        this.address = address; 
+        this.address = address;
     }
 
-    public void processDonation(Donation donation){
+    public void processDonation(Donation donation) {
         donations.add(donation);
 
-        for(DonationItem donationItem : donation.getItems()){
-            switch (donationItem.getItem().getItemType()){
+        for (DonationItem donationItem : donation.getItems()) {
+            switch (donationItem.getItem().getItemType()) {
                 case CLOTHES -> clothingQuantity += donationItem.getQuantity();
                 case FOODS -> foodQuantity += donationItem.getQuantity();
                 case HYGIENE_PRODUCTS -> hygieneProductQuantity += donationItem.getQuantity();
@@ -55,23 +55,23 @@ public class DistributionCenter {
         }
     }
 
-    public void processOrder(Order order){
-        for(OrderItem orderItem: order.getOrderItems()){
-            switch (orderItem.getItem().getItemType()){
+    public void processOrder(Order order) {
+        for (OrderItem orderItem : order.getOrderItems()) {
+            switch (orderItem.getItem().getItemType()) {
                 case CLOTHES -> {
-                    if (clothingQuantity < orderItem.getQuantity()){
+                    if (clothingQuantity < orderItem.getQuantity()) {
                         rejectOrder("Insufficient clothing stock");
                         return;
                     }
                 }
                 case FOODS -> {
-                    if(foodQuantity < orderItem.getQuantity()){
+                    if (foodQuantity < orderItem.getQuantity()) {
                         rejectOrder("Insufficient food stock");
                         return;
                     }
                 }
                 case HYGIENE_PRODUCTS -> {
-                    if(hygieneProductQuantity < orderItem.getQuantity()){
+                    if (hygieneProductQuantity < orderItem.getQuantity()) {
                         rejectOrder("Insufficient hygiene products stock");
                         return;
                     }

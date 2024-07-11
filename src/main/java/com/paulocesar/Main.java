@@ -1,71 +1,32 @@
 package com.paulocesar;
 
 import com.paulocesar.entity.*;
-import com.paulocesar.entity.enums.ClothingSize;
+import com.paulocesar.services.DistributionCenterService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("FloodSupportSystemPU");
-        EntityManager em = emf.createEntityManager();
+        DistributionCenterService centerService = new DistributionCenterService();
 
         Address address1 = new Address("Av. Boqueirão", "2450", "Igara", "Canoas", "RS", "92032-420");
+        DistributionCenter dc1 = new DistributionCenter("Centro de Distribuição Esperança", address1);
+        DistributionCenter dc2 = new DistributionCenter("Centro de Distribuição Prosperidade", address1);
+        centerService.createDistributionCenter(dc1);
+        centerService.createDistributionCenter(dc2);
 
-        DistributionCenter db1 = new DistributionCenter("Centro de Distribuição Esperança", address1);
+        DistributionCenter dc = centerService.getDistributionCenter(dc1.getId());
+        System.out.println("Retrieved center: " + dc);
 
-        Shelter shelter = new Shelter("Abrigo Boa Esperança", address1, "João Silva", "555-1234", "joao@abrigo.com", 100);
+        List<DistributionCenter> centers = centerService.getAllDistributionCenter();
+        System.out.println("All centers: " + centers);
 
-        Item clothing = new Clothing("T-Shirt", 'M', ClothingSize.M);
-        Item hygieneProduct = new HygieneProduct("Soap");
-        Item hygieneProduct2 = new HygieneProduct("Pasta de dente");
+        dc1.setName("Update Center Name");
+        centerService.updateDistributionCenter(dc1);
+        System.out.println(dc1);
 
-        Donation donation = new Donation(db1, LocalDateTime.now());
+        centerService.deleteDistributionCenter(dc1);
 
-        DonationItem donationItem = new DonationItem(donation, hygieneProduct, 10);
-        DonationItem donationItem2 = new DonationItem(donation, hygieneProduct2, 10);
-
-        donation.getItems().add(donationItem);
-        donation.getItems().add(donationItem2);
-
-        em.getTransaction().begin();
-        em.persist(db1);
-        em.persist(clothing);
-        em.persist(hygieneProduct);
-        em.persist(hygieneProduct2);
-        em.persist(donation);
-        em.persist(donationItem);
-        em.persist(donationItem2);
-        em.getTransaction().commit();
-
-        db1.processDonation(donation);
-
-        em.getTransaction().begin();
-        em.merge(db1);
-        em.getTransaction().commit();
-
-        Item item1 = new HygieneProduct("Soap");
-        Order order = new Order(shelter, db1, LocalDateTime.now());
-        OrderItem orderItem = new OrderItem(order, item1, 19);
-        order.getOrderItems().add(orderItem);
-
-        em.getTransaction().begin();
-        em.persist(shelter);
-        em.persist(item1);
-        em.persist(order);
-        em.persist(orderItem);
-        em.getTransaction().commit();
-
-        db1.processOrder(order);
-
-        em.getTransaction().begin();
-        em.merge(db1);
-        em.getTransaction().commit();
-
-        em.close();
-        emf.close();
+        centerService.close();
     }
 }
