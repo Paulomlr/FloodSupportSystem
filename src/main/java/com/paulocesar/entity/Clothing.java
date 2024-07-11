@@ -3,6 +3,7 @@ package com.paulocesar.entity;
 import com.paulocesar.entity.enums.ClothingSize;
 import com.paulocesar.entity.enums.ItemType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @Entity(name = "tb_clothing")
 @PrimaryKeyJoinColumn(name="id_item")
 public class Clothing extends Item {

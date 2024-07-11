@@ -3,6 +3,7 @@ package com.paulocesar.entity;
 import com.paulocesar.entity.enums.ItemType;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity(name = "tb_item")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Item {

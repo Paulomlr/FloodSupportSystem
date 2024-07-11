@@ -3,6 +3,7 @@ package com.paulocesar.entity;
 import com.paulocesar.entity.enums.ItemType;
 import com.paulocesar.entity.enums.UnitMeasurement;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @Entity(name = "tb_food")
 @PrimaryKeyJoinColumn(name="id_item")
 public class Food extends Item {
