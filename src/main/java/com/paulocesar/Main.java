@@ -20,17 +20,25 @@ public class Main {
         centerService.createDistributionCenter(dc2);
 
         HygieneProduct soap = new HygieneProduct("Soap");
+        HygieneProduct toothbrush = new HygieneProduct("Toothbrush");
         itemService.createItem(soap);
+        itemService.createItem(toothbrush);
 
         Donation donation = new Donation(dc1, LocalDateTime.now());
         donationService.createDonation(donation);
 
-        DonationItem item = new DonationItem(donation, soap, 100);
-        donation.getItems().add(item);
-
+        DonationItem item1 = new DonationItem(donation, soap, 100);
+        DonationItem item2 = new DonationItem(donation, toothbrush, 100);
+        donation.getItems().add(item1);
+        donation.getItems().add(item2);
         donationService.updateDonation(donation);
 
         Donation findDonation = donationService.getDonation(donation.getId());
+        System.out.println(findDonation);
+
+        donationService.deleteDonationItem(donation, item2);
+
+        findDonation = donationService.getDonation(donation.getId());
         System.out.println(findDonation);
 
         centerService.close();

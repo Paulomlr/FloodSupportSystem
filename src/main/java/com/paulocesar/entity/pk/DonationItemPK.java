@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"donation"})
 @EqualsAndHashCode
 @Embeddable
 public class DonationItemPK implements Serializable {
