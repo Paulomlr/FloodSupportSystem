@@ -1,9 +1,6 @@
 package com.paulocesar.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +9,7 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @Entity(name = "tb_donation")
 public class Donation {
 

@@ -12,6 +12,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @Entity(name = "tb_order")
 public class Order {
     @Id

@@ -1,5 +1,6 @@
 package com.paulocesar.services;
 
+import com.paulocesar.entity.OrderItem;
 import com.paulocesar.entity.Shelter;
 import com.paulocesar.repositories.ShelterRepository;
 
@@ -34,5 +35,16 @@ public class ShelterService {
 
     public void close(){
         repository.close();
+    }
+
+    public void receiveItem(Shelter shelter, List<OrderItem> orderItems){
+        for(OrderItem orderItem : orderItems){
+            switch (orderItem.getItem().getItemType()){
+                case CLOTHES -> shelter.setClothingQuantity(shelter.getClothingQuantity() + orderItem.getQuantity());
+                case HYGIENE_PRODUCTS -> shelter.setHygieneProductQuantity(shelter.getHygieneProductQuantity() + orderItem.getQuantity());
+                case FOODS -> shelter.setFoodQuantity(shelter.getFoodQuantity() + orderItem.getQuantity());
+            }
+        }
+        repository.update(shelter);
     }
 }
