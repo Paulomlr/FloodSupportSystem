@@ -1,6 +1,7 @@
 package com.paulocesar;
 
 import com.paulocesar.entity.*;
+import com.paulocesar.entity.enums.OrderStatus;
 import com.paulocesar.services.*;
 
 import java.time.LocalDateTime;
@@ -60,8 +61,8 @@ public class Main {
         //Processing the donation received at the center
         centerService.processDonation(donation);
 
-        //Processing the request made by the shelter
         centerService.processOrder(order);
+        orderService.updateOrder(order);
 
         centerService.close();
         itemService.close();

@@ -1,6 +1,7 @@
 package com.paulocesar.services;
 
 import com.paulocesar.entity.*;
+import com.paulocesar.entity.enums.OrderStatus;
 import com.paulocesar.repositories.DistributionCenterRepository;
 
 import java.util.List;
@@ -16,7 +17,6 @@ public class DistributionCenterService {
 
     public void close(){
         repository.close();
-        shelterService.close();
     }
 
     public void createDistributionCenter(DistributionCenter distributionCenter){
@@ -60,19 +60,19 @@ public class DistributionCenterService {
             switch (orderItem.getItem().getItemType()) {
                 case CLOTHES -> {
                     if (center.getClothingQuantity() < orderItem.getQuantity()) {
-                        rejectOrder("Insufficient clothing stock");
+                        rejectOrder(order, "Insufficient clothing stock");
                         return;
                     }
                 }
                 case FOODS -> {
                     if (center.getFoodQuantity() < orderItem.getQuantity()) {
-                        rejectOrder("Insufficient food stock");
+                        rejectOrder(order, "Insufficient food stock");
                         return;
                     }
                 }
                 case HYGIENE_PRODUCTS -> {
                     if (center.getHygieneProductQuantity() < orderItem.getQuantity()) {
-                        rejectOrder("Insufficient hygiene products stock");
+                        rejectOrder(order, "Insufficient hygiene products stock");
                         return;
                     }
                 }
@@ -92,12 +92,15 @@ public class DistributionCenterService {
                 case HYGIENE_PRODUCTS -> center.setHygieneProductQuantity(center.getHygieneProductQuantity() - orderItem.getQuantity()) ;
             }
         }
+        order.setStatus(OrderStatus.ACCEPTED);
         Shelter shelter = order.getShelter();
         shelterService.receiveItem(shelter, order.getOrderItems());
         repository.update(center);
     }
 
-    private void rejectOrder(String reason) {
+    private void rejectOrder(Order order, String reason) {
         System.out.println("Order rejected: " + reason);
+        order.setStatus(OrderStatus.REJECTED);
+        order.setReasonForRejection(reason);
     }
 }

@@ -28,6 +28,8 @@ public class Order {
     private DistributionCenter distributionCenter;
 
     private LocalDateTime orderDate;
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private String reasonForRejection;
 
