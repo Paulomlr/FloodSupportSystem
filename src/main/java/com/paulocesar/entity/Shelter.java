@@ -32,12 +32,14 @@ public class Shelter {
     private int clothingQuantity = 0;
     private int hygieneProductQuantity = 0;
 
-    public Shelter(String name, Address address, String responsible, String phone, String email, Integer capacity) {
+    public Shelter(String name, Address address, String responsible, String phone, String email, Integer capacity, Integer quantityPeople) {
         this.name = name;
         this.address = address;
         this.responsible = responsible;
         this.phone = phone;
         this.email = email;
         this.capacity = capacity;
+        this.quantityPeople = quantityPeople;
+        occupationPercentage = (double) quantityPeople/capacity*100;
     }
 }

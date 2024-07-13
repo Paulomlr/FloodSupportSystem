@@ -1,9 +1,6 @@
 package com.paulocesar;
 
-import com.paulocesar.util.DistributionCenterCSVReader;
-import com.paulocesar.util.DonationCSVReader;
-import com.paulocesar.util.DonationItemCSVReader;
-import com.paulocesar.util.ItemCSVReader;
+import com.paulocesar.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,10 +8,12 @@ public class Main {
         DonationCSVReader donationCSVReader = new DonationCSVReader();
         ItemCSVReader itemCSVReader = new ItemCSVReader();
         DonationItemCSVReader donationItemCSVReader = new DonationItemCSVReader();
+        ShelterCSVReader shelterCSVReader = new ShelterCSVReader();
 
         centerCSVReader.readerCSVFile();
         donationCSVReader.readerCSVFile();
         itemCSVReader.readerCSVFile();
         donationItemCSVReader.readerCSVFile();
+        shelterCSVReader.readerCSVFile();
     }
 }

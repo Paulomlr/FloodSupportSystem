@@ -1,0 +1,4 @@
+name,street,number,district,city,state,zipCode,responsible,phone,email,capacity,quantityPeople
+Abrigo Central,Rua das Flores,100,Centro,São Paulo,SP,12345-678,João Silva,(11) 9876-5432,joao.silva@gmail.com,150,83
+Abrigo Norte,Rua dos Pássaros,200,Norte,Rio de Janeiro,RJ,23456-789,Ana Souza,(22) 8765-4321,ana.souza@gmail.com,120,77
+Abrigo Sul,Rua das Árvores,300,Sul,Belo Horizonte,MG,34567-890,Carlos Oliveira,(33) 7654-3210,carlos.oliveira@gmail.com,100,64
