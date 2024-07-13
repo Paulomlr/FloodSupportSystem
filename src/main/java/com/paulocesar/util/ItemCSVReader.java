@@ -19,8 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.paulocesar.entity.enums.ItemType.*;
-
 @Getter
 @Setter
 public class ItemCSVReader {
@@ -76,7 +74,6 @@ public class ItemCSVReader {
                     }
                 }
             });
-            service.close();
         }
         catch (IOException | CsvValidationException e){
             e.printStackTrace();
