@@ -9,11 +9,13 @@ public class Main {
         ItemCSVReader itemCSVReader = new ItemCSVReader();
         DonationItemCSVReader donationItemCSVReader = new DonationItemCSVReader();
         ShelterCSVReader shelterCSVReader = new ShelterCSVReader();
+        OrderCSVReader orderCSVReader = new OrderCSVReader();
 
         centerCSVReader.readerCSVFile();
         donationCSVReader.readerCSVFile();
         itemCSVReader.readerCSVFile();
         donationItemCSVReader.readerCSVFile();
         shelterCSVReader.readerCSVFile();
+        orderCSVReader.readerCSVFile();
     }
 }

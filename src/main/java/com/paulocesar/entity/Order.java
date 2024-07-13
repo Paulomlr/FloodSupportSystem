@@ -27,7 +27,7 @@ public class Order {
     @JoinColumn(name = "id_distribution_center")
     private DistributionCenter distributionCenter;
 
-    private LocalDateTime orderDate;
+    private String orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -37,7 +37,7 @@ public class Order {
     @OneToMany(mappedBy = "id.order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public Order(Shelter shelter, DistributionCenter distributionCenter, LocalDateTime orderDate) {
+    public Order(Shelter shelter, DistributionCenter distributionCenter, String orderDate) {
         this.shelter = shelter;
         this.distributionCenter = distributionCenter;
         this.orderDate = orderDate;
