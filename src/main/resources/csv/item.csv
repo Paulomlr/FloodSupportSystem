@@ -1,0 +1,32 @@
+type,name,gender,size,quantity,unitMeasurement,expirationDate
+CLOTHES,Camiseta,M,GG,null,null,null
+CLOTHES,Vestido,F,G,null,null,null
+CLOTHES,Calça jeans,M,G,null,null,null
+CLOTHES,Blusa de frio,F,M,null,null,null
+CLOTHES,Shorts,M,P,null,null,null
+CLOTHES,Blusa de manga longa,F,G,null,null,null
+CLOTHES,Jaqueta,M,G,null,null,null
+CLOTHES,Saia,F,M,null,null,null
+CLOTHES,Regata,M,PP,null,null,null
+CLOTHES,Vestido de festa,F,GG,null,null,null
+CLOTHES,Calça social,M,M,null,null,null
+CLOTHES,Camiseta básica,F,P,null,null,null
+HYGIENE_PRODUCTS,Shampoo,null,null,null,null,null
+HYGIENE_PRODUCTS,Condicionador,null,null,null,null,null
+HYGIENE_PRODUCTS,Sabonete,null,null,null,null,nul
+HYGIENE_PRODUCTS,Creme dental,null,null,null,null,null
+HYGIENE_PRODUCTS,Desodorante masculino,null,null,null,null,null
+HYGIENE_PRODUCTS,Desodorante feminino,null,null,null,null,null
+HYGIENE_PRODUCTS,Escova de dentes,null,null,null,null,null
+HYGIENE_PRODUCTS,Absorvente solar,null,null,null,null,null
+HYGIENE_PRODUCTS,Pasta de dentes,null,null,null,null,null
+FOODS,Arroz,null,null,5.0,KG,2024-12-31
+FOODS,Feijão,null,null,3.0,KG,2024-10-31
+FOODS,Óleo de soja,null,null,2.0,L,2025-06-30
+FOODS,Açúcar,null,null,1.0,KG,2023-12-31
+FOODS,Sal refinado,null,null,500.0,G,2024-09-30
+FOODS,Macarrão,null,null,400.0,G,2023-11-30
+FOODS,Leite em pó,null,null,1.0,KG,2023-08-31
+FOODS,Café solúvel,null,null,250.0,G,2024-05-31
+FOODS,Biscoitos,null,null,200.0,G,2023-10-31
+FOODS,Suco concentrado,null,null,2.0,L,2023-07-31

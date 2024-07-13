@@ -1,21 +1,15 @@
 package com.paulocesar;
 
-import com.paulocesar.entity.DistributionCenter;
-import com.paulocesar.services.DistributionCenterService;
-import com.paulocesar.util.DistributionCenterCSVReader;
-
-import java.util.List;
+import com.paulocesar.services.ItemService;
+import com.paulocesar.util.ItemCSVReader;
 
 public class Main {
     public static void main(String[] args) {
-        DistributionCenterService centerService = new DistributionCenterService();
+        ItemService itemService = new ItemService();
 
-        DistributionCenterCSVReader readerCenter = new DistributionCenterCSVReader();
-        readerCenter.readerCSVFile();
+        ItemCSVReader reader = new ItemCSVReader();
+        reader.readerCSVFile();
 
-        List<DistributionCenter> centers = centerService.getAllDistributionCenter();
-        centers.forEach(System.out::println);
-
-        centerService.close();
+        itemService.close();
     }
 }
