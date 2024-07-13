@@ -1,15 +1,13 @@
 package com.paulocesar;
 
-import com.paulocesar.services.ItemService;
-import com.paulocesar.util.ItemCSVReader;
+import com.paulocesar.util.DistributionCenterCSVReader;
+import com.paulocesar.util.DonationCSVReader;
 
 public class Main {
     public static void main(String[] args) {
-        ItemService itemService = new ItemService();
-
-        ItemCSVReader reader = new ItemCSVReader();
-        reader.readerCSVFile();
-
-        itemService.close();
+        DistributionCenterCSVReader centerCSVReader = new DistributionCenterCSVReader();
+        DonationCSVReader donationCSVReader = new DonationCSVReader();
+        centerCSVReader.readerCSVFile();
+        donationCSVReader.readerCSVFile();
     }
 }
