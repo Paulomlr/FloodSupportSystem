@@ -10,6 +10,7 @@ public class Main {
         DonationItemCSVReader donationItemCSVReader = new DonationItemCSVReader();
         ShelterCSVReader shelterCSVReader = new ShelterCSVReader();
         OrderCSVReader orderCSVReader = new OrderCSVReader();
+        OrderItemCSVReader orderItemCSVReader = new OrderItemCSVReader();
 
         centerCSVReader.readerCSVFile();
         donationCSVReader.readerCSVFile();
@@ -17,5 +18,6 @@ public class Main {
         donationItemCSVReader.readerCSVFile();
         shelterCSVReader.readerCSVFile();
         orderCSVReader.readerCSVFile();
+        orderItemCSVReader.readerCSVFile();
     }
 }
