@@ -1,4 +1,4 @@
-package com.paulocesar;
+package com.paulocesar.application;
 
 import com.paulocesar.entity.*;
 import com.paulocesar.services.DistributionCenterService;

@@ -13,7 +13,7 @@ import java.util.*;
 @NoArgsConstructor
 @Entity(name = "tb_distribution_center")
 public class DistributionCenter {
-    private static Integer MAX_CAPACITY = 1000;
+    public static final Integer MAX_CAPACITY = 1000;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

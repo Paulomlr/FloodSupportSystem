@@ -77,7 +77,11 @@ public class DonationItemCSVReader {
             });
             set.forEach(donation -> {
                 donationService.updateDonation(donation);
-                centerService.processDonation(donation);
+                try {
+                    centerService.processDonation(donation);
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
+                }
             });
         }
         catch (IOException | CsvValidationException e){

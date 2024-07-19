@@ -39,17 +39,32 @@ public class DistributionCenterService {
         repository.delete(distributionCenter);
     }
 
-    public void processDonation(Donation donation) {
+    public void processDonation(Donation donation) throws IllegalArgumentException{
         DistributionCenter center = donation.getDistributionCenter();
-        center.getDonations().add(donation);
 
         for (DonationItem donationItem : donation.getItems()) {
             switch (donationItem.getItem().getItemType()) {
-                case CLOTHES -> center.setClothingQuantity(center.getClothingQuantity() + donationItem.getQuantity());
-                case FOODS -> center.setFoodQuantity(center.getFoodQuantity() + donationItem.getQuantity());
-                case HYGIENE_PRODUCTS -> center.setHygieneProductQuantity(center.getHygieneProductQuantity() + donationItem.getQuantity()) ;
+                case CLOTHES -> {
+                    if((center.getClothingQuantity() + donationItem.getQuantity()) < DistributionCenter.MAX_CAPACITY){
+                       center.setClothingQuantity(center.getClothingQuantity() + donationItem.getQuantity());
+                    }
+                    else throw new IllegalArgumentException("Donation exceeds maximum capacity. Item: " + donationItem.getItem().getItemName() + ", Quantity: " + (donationItem.getQuantity() + center.getClothingQuantity()));
+                }
+                case FOODS -> {
+                    if((center.getFoodQuantity() + donationItem.getQuantity()) < DistributionCenter.MAX_CAPACITY){
+                        center.setFoodQuantity(center.getFoodQuantity() + donationItem.getQuantity());
+                    }
+                    else throw new IllegalArgumentException("Donation exceeds maximum capacity. Item: " + donationItem.getItem().getItemName() + ", Quantity: " + (donationItem.getQuantity() + center.getFoodQuantity()));
+                }
+                case HYGIENE_PRODUCTS -> {
+                    if((center.getHygieneProductQuantity() + donationItem.getQuantity()) < DistributionCenter.MAX_CAPACITY){
+                        center.setHygieneProductQuantity(center.getHygieneProductQuantity() + donationItem.getQuantity());
+                    }
+                    else throw new IllegalArgumentException("Donation exceeds maximum capacity. Item: " + donationItem.getItem().getItemName() + ", Quantity: " + (donationItem.getQuantity() + center.getHygieneProductQuantity()));
+                }
             }
         }
+        center.getDonations().add(donation);
         repository.update(center);
     }
 
